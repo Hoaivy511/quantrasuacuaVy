@@ -255,8 +255,37 @@ with tab_order:
             st.dataframe(df_cart[["Tên món", "Size", "Topping", "Số lượng", "Thành tiền"]], hide_index=True, **FULL_DF)
             
             # (Các đoạn tính tiền, giảm giá...)
-            
+            # Nút chốt đơn và xuất hóa đơn
             if st.button("🚀 XUẤT HÓA ĐƠN & THANH TOÁN", type="primary", **FULL_BTN):
-                # Thực hiện logic chốt đơn...
-                st.success("Đơn hàng đã được tạo!")
+                now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                cust_title = customer_name.strip() if customer_name.strip() else "Khách vãng lai"
+                
+                # Tạo đối tượng Invoice lưu vào Session State
+                st.session_state.invoice = {
+                    "time": now_str,
+                    "customer": cust_title,
+                    "note": order_note,
+                    "cart": st.session_state.cart.copy(),
+                    "total": total_bill,
+                    "discount": discount_pct,
+                    "final": final_bill
+                }
+
+                # Lưu vào lịch sử bán hàng (CSV)
+                history = load_history()
+                history.append({
+                    "time": now_str,
+                    "customer": cust_title,
+                    "total_items": sum(item["Số lượng"] for item in st.session_state.cart),
+                    "final_amount": final_bill
+                })
+                save_history(history)
+                
+                # Xóa giỏ hàng sau khi xuất đơn thành công
+                st.session_state.cart = []
+                
+                # 🎈 THÊM HIỆU ỨNG BONG BÓNG BAY LÊN Ở ĐÂY:
+                st.balloons()
+                
+                # Ép tải lại trang để hiển thị hóa đơn và mã QR
                 st.rerun()
