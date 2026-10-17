@@ -241,3 +241,8 @@ with tab_order:
             ]
             rm_choice = st.selectbox("❌ Xóa 1 món khỏi giỏ:", ["— Chọn món —"] + rm_options)
             if rm_choice != "— Chọn món —":
+    idx_to_remove = int(rm_choice.split(".")[0]) - 1
+    if st.button("🗑️ Xác nhận xóa món này", **FULL_BTN):
+        st.session_state.cart.pop(idx_to_remove)
+        st.session_state.invoice = None
+        st.rerun()
