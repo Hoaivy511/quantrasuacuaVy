@@ -6,15 +6,6 @@ from datetime import datetime
 import pandas as pd
 import streamlit as st
 
-# TIÊU ĐỀ & BANNER QUẢNG CÁO
-# ---------------------------------------------------------
-st.markdown("<h1 style='text-align: center; color: #FF4B4B; margin-bottom: 0;'>🧋 quantrasuacuaVy 🌪️</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-style: italic; color: #666; font-size: 18px;'>✨ Đậm vị trà - Đậm gu Gen Z ✨</p>", unsafe_allow_html=True)
-
-BANNER_OFFLINE = os.path.join(BASE_DIR, "trasua.jpg")
-if os.path.exists(BANNER_OFFLINE):
-     BANNER_URL = BANNER_OFFLINE
-
 # ---------------------------------------------------------
 # CẤU HÌNH & HẰNG SỐ CƠ BẢN
 # ---------------------------------------------------------
