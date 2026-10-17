@@ -255,6 +255,19 @@ with tab_order:
             st.dataframe(df_cart[["Tên món", "Size", "Topping", "Số lượng", "Thành tiền"]], hide_index=True, **FULL_DF)
             
             # (Các đoạn tính tiền, giảm giá...)
+            # --- Tính tổng tiền đơn hàng ---
+            total_bill = sum(item["Thành tiền"] for item in st.session_state.cart)
+            discount_pct = st.number_input("🎁 Giảm giá (%)", min_value=0, max_value=100, value=0)
+            final_bill = int(total_bill * (1 - discount_pct / 100))
+            
+            st.markdown(f"### 💵 Tổng thanh toán: `{final_bill:,} VNĐ`")
+
+            # Nút làm trống giỏ hàng
+            if st.button("🔄 Làm trống giỏ hàng"):
+                st.session_state.cart = []
+                st.session_state.invoice = None
+                st.rerun()
+
             # Nút chốt đơn và xuất hóa đơn
             if st.button("🚀 XUẤT HÓA ĐƠN & THANH TOÁN", type="primary", **FULL_BTN):
                 now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -266,6 +279,9 @@ with tab_order:
                     "customer": cust_title,
                     "note": order_note,
                     "cart": st.session_state.cart.copy(),
+                    "total": total_bill,
+                    "discount": discount_pct,
+                    "final": final_bill
                 }
 
                 # Lưu vào lịch sử bán hàng (CSV)
@@ -281,8 +297,7 @@ with tab_order:
                 # Xóa giỏ hàng sau khi xuất đơn thành công
                 st.session_state.cart = []
                 
-                # 🎈 THÊM HIỆU ỨNG BONG BÓNG BAY LÊN Ở ĐÂY:
+                # 🎈 Kích hoạt bong bóng bay lên
                 st.balloons()
                 
-                # Ép tải lại trang để hiển thị hóa đơn và mã QR
                 st.rerun()
