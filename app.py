@@ -89,7 +89,7 @@ def show_payment_qr(inv: dict) -> None:
 st.markdown("<h1 class='main-title'>🧋 TRÀ SỮA MR KHẢI LỐC XOÁY 🌪️</h1>", unsafe_allow_html=True)
 st.markdown("<p class='sub-title'>✨ Đậm vị trà - Đậm gu Gen Z ✨</p>", unsafe_allow_html=True)
 
-BANNER = os.path.join(BASE_DIR, "file_00000000d3fc8207810f0b04c88661e1.png")
+BANNER = os.path.join(BASE_DIR, "trasua.jpg")
 if os.path.exists(BANNER):
     _, c_mid, _ = st.columns([1, 2, 1])
     with c_mid:
