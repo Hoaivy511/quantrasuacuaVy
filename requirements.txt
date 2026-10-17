@@ -1,1 +1,2 @@
-Sreamlit
+Streamlit>=1.40
+pandas
