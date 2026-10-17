@@ -266,9 +266,6 @@ with tab_order:
                     "customer": cust_title,
                     "note": order_note,
                     "cart": st.session_state.cart.copy(),
-                    "total": total_bill,
-                    "discount": discount_pct,
-                    "final": final_bill
                 }
 
                 # Lưu vào lịch sử bán hàng (CSV)
