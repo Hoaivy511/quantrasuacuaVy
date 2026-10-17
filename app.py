@@ -247,3 +247,16 @@ with tab_order:
                     st.session_state.cart.pop(idx_to_remove)
                     st.session_state.invoice = None
                     st.rerun()
+           # Kiểm tra nếu giỏ hàng có sản phẩm mới hiện nút mua
+        if not st.session_state.cart:
+            st.info("Giỏ hàng đang trống!")
+        else:
+            df_cart = pd.DataFrame(st.session_state.cart)
+            st.dataframe(df_cart[["Tên món", "Size", "Topping", "Số lượng", "Thành tiền"]], hide_index=True, **FULL_DF)
+            
+            # (Các đoạn tính tiền, giảm giá...)
+            
+            if st.button("🚀 XUẤT HÓA ĐƠN & THANH TOÁN", type="primary", **FULL_BTN):
+                # Thực hiện logic chốt đơn...
+                st.success("Đơn hàng đã được tạo!")
+                st.rerun()
