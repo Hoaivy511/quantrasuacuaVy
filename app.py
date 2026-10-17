@@ -41,7 +41,7 @@ def clean_topping(label: str) -> str:
 
 def create_txt_invoice(inv: dict) -> str:
     line = "=" * 40
-    content = f"{line}\n{'HÓA ĐƠN BÁN HÀNG - MR KHẢI LỐC XOÁY':^40}\n{line}\n"
+    content = f"{line}\n{'HÓA ĐƠN BÁN HÀNG - quantrasuacuaVy':^40}\n{line}\n"
     content += f"Thời gian: {inv['time']}\n"
     content += f"Khách hàng: {inv['customer']}\n"
     if inv["note"]:
@@ -57,7 +57,7 @@ def create_txt_invoice(inv: dict) -> str:
     content += f"Tổng tiền món: {inv['total']:,} VNĐ\n"
     content += f"Giảm giá: {inv['discount']}%\n"
     content += f"TỔNG THANH TOÁN: {inv['final']:,} VNĐ\n"
-    content += f"{line}\n{'Cảm ơn bạn đã ủng hộ Mr Khải Lốc Xoáy! 💕':^40}\n"
+    content += f"{line}\n{'Cảm ơn bạn đã ủng hộ quantrasuacuaVy! 💕':^40}\n"
     return content
 
 
@@ -86,7 +86,7 @@ def show_payment_qr(inv: dict) -> None:
 # ---------------------------------------------------------
 # TIÊU ĐỀ & TABS
 # ---------------------------------------------------------
-st.markdown("<h1 class='main-title'>🧋 TRÀ SỮA MR KHẢI LỐC XOÁY 🌪️</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='main-title'>🧋 quantrasuacuaVy 🌪️</h1>", unsafe_allow_html=True)
 st.markdown("<p class='sub-title'>✨ Đậm vị trà - Đậm gu Gen Z ✨</p>", unsafe_allow_html=True)
 
 BANNER = os.path.join(BASE_DIR, "trasua.jpg")
